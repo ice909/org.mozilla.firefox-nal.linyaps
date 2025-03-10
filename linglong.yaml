@@ -3,10 +3,10 @@ version: "1"
 package:
   id: org.mozilla.firefox-nal.linyaps
   name: firefox-nal
-  version: 136.0.0.0
+  version: 136.0.0.1
   kind: app
   description: |
-    火狐浏览器国际版 (136.beta3)
+    快速、可靠、私密——让您安心上网。
 
 command:
   - /opt/apps/org.mozilla.firefox-nal.linyaps/files/firefox
@@ -19,21 +19,26 @@ build: |
   bash ./install_dep linglong/sources $PREFIX
   SOURCES="linglong/sources"
   # 解压
-  tar -xvf $SOURCES/firefox-136.0b3.tar.xz -C $SOURCES
+  tar -xvf $SOURCES/firefox-136.0.zh.tar.xz -C $SOURCES
   # 移动
   cp -r $SOURCES/firefox/* $PREFIX
-  mkdir -p $PREFIX/share/icons/hicolor/64x64/apps
-  mkdir -p $PREFIX/share/icons/locolor/64x64/apps
-  mkdir -p $PREFIX/share/applications
-  cp $PREFIX/browser/chrome/icons/default/default64.png $PREFIX/share/icons/hicolor/64x64/apps/firefox-nal.png
-  cp $PREFIX/browser/chrome/icons/default/default64.png $PREFIX/share/icons/locolor/64x64/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default16.png $PREFIX/share/icons/hicolor/16x16/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default16.png $PREFIX/share/icons/locolor/16x16/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default32.png $PREFIX/share/icons/hicolor/32x32/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default32.png $PREFIX/share/icons/locolor/32x32/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default48.png $PREFIX/share/icons/hicolor/48x48/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default48.png $PREFIX/share/icons/locolor/48x48/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default64.png $PREFIX/share/icons/hicolor/64x64/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default64.png $PREFIX/share/icons/locolor/64x64/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default128.png $PREFIX/share/icons/hicolor/128x128/apps/firefox-nal.png
+  install -D $PREFIX/browser/chrome/icons/default/default128.png $PREFIX/share/icons/locolor/128x128/apps/firefox-nal.png
   # 放置desktop
-  cp org.mozilla.firefox-nal.linyaps.desktop $PREFIX/share/applications/org.mozilla.firefox-nal.linyaps.desktop
+  install -D org.mozilla.firefox-nal.linyaps.desktop $PREFIX/share/applications/org.mozilla.firefox-nal.linyaps.desktop
 
 sources:
   - kind: file
-    url: https://minio.cicd.getdeepin.org/share/firefox-136.0b3.tar.xz
-    digest: 5d2d1243a5b7f54430279493f0b75cddf4206fc703d9fff5e440b7f29ffec50c
+    url: https://minio.cicd.getdeepin.org/share/firefox-136.0.zh.tar.xz
+    digest: 34802a495305869f8899b645ef23e93a2ec834c6ef6ac4d7d8ca008d4cd628e9
   # linglong:gen_deb_source sources amd64 https://pools.uniontech.com/deepin-beige beige main community
   # linglong:gen_deb_source install libpci3
   - kind: file
